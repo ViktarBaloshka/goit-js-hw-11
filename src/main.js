@@ -10,6 +10,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const refs = {
   searchForm: document.querySelector('.js-search-form'),
   gallery: document.querySelector('.gallery'),
+  loader: document.querySelector('.js-loader'),
 };
 
 refs.searchForm.addEventListener('submit', onFormSubmit);
@@ -30,7 +31,7 @@ function onFormSubmit(evt) {
   }
 
   refs.gallery.innerHTML = '';
-  showLoader();
+  refs.loader.classList.add('isVisible');
 
   fetchPictures(query)
     .then(data => {
@@ -45,20 +46,19 @@ function onFormSubmit(evt) {
       fetchError(error);
     })
     .finally(() => {
-      hideLoader();
+      refs.loader.classList.remove('isVisible');
+      refs.searchForm.reset();
     });
 }
 
-const showLoader = () => {
-  const loader = document.querySelector('.loader');
-  loader.innerHTML = '<div class="spinner"></div>';
-  loader.style.display = 'flex';
+/*const showLoader = () => {
+  refs.loader.innerHTML = '<div class="spinner"></div>';
+  refs.loader.style.display = 'flex';
 };
 
 const hideLoader = () => {
-  const loader = document.querySelector('.loader');
-  loader.style.display = 'none';
-};
+  refs.loader.style.display = 'none';
+};*/
 
 function fetchError() {
   iziToast.error({
