@@ -51,15 +51,6 @@ function onFormSubmit(evt) {
     });
 }
 
-/*const showLoader = () => {
-  refs.loader.innerHTML = '<div class="spinner"></div>';
-  refs.loader.style.display = 'flex';
-};
-
-const hideLoader = () => {
-  refs.loader.style.display = 'none';
-};*/
-
 function fetchError() {
   iziToast.error({
     title: 'Error',
